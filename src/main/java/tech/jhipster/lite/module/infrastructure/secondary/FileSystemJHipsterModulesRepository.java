@@ -79,6 +79,8 @@ class FileSystemJHipsterModulesRepository implements JHipsterModulesRepository {
 
     changes.preActions().run();
 
+    //TODO: Create a class DefferedContextValueSetter which is going to have handle(changes.projectFolder(), changes.filesToAdd()). This class will indify project type by looping through all files to add and project folder and replace the context value which has DefferedContextValue.OUTPUT_DIRECTORY with the target or build depending on the project type.
+    //TODO: Implementing all tests of DefferedContextValueSetterTest
     files.create(changes.projectFolder(), changes.filesToAdd());
     files.move(changes.projectFolder(), changes.filesToMove());
     files.delete(changes.projectFolder(), changes.filesToDelete());
