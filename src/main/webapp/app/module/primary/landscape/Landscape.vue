@@ -92,4 +92,34 @@
       0 0 0 6px rgba(255, 215, 0, 0);
   }
 }
+
+@media screen and (max-width: 768px) {
+  .jhipster-landscape-header {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 60px 20px 20px;
+  }
+
+  .jhipster-landscape-search-container {
+    margin: 10px 0;
+    width: 100%;
+  }
+
+  .jhipster-landscape-search {
+    max-width: 100%;
+  }
+
+  .jhipster-landscape-modes-selection {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    z-index: 4;
+  }
+
+  .jhipster-landscape-preset-selection {
+    position: static;
+    margin-top: 10px;
+  }
+}
 </style>
