@@ -14,6 +14,7 @@
 }
 
 .jhipster-landscape-search {
+  position: relative;
   display: flex;
   align-items: center;
   background-color: white;
@@ -31,6 +32,29 @@
   padding: 8px 12px;
   border: 1px solid #ccc;
   border-radius: 20px;
+}
+
+.jhipster-landscape-search-close {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  background-color: #f44336;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  font-size: 16px;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+}
+
+.jhipster-landscape-search-close:hover {
+  background-color: #d32f2f;
 }
 
 /* Adjust the main content to accommodate the search bar */

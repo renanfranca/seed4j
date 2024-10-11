@@ -91,6 +91,11 @@ export default defineComponent({
       highlightModule(searchQuery.value);
     };
 
+    const clearSearch = () => {
+      searchQuery.value = '';
+      highlightedModule.value = null;
+    };
+
     const scrollToHighlightedModule = () => {
       if (highlightedModule.value) {
         const element = landscapeElements.value.get(highlightedModule.value.get());
@@ -683,6 +688,7 @@ export default defineComponent({
       selectedPresetName,
       searchQuery,
       performSearch,
+      clearSearch,
     };
   },
 });
