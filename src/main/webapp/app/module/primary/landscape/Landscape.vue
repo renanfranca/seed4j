@@ -112,7 +112,6 @@
   .jhipster-landscape-modes-selection {
     position: absolute;
     top: 10px;
-    left: 10px;
     z-index: 4;
   }
 
