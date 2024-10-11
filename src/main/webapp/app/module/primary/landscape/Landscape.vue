@@ -24,21 +24,13 @@
 
 .jhipster-landscape-search .jhlite-field--field {
   width: 300px;
-  margin-right: 10px;
 }
 
 .jhipster-landscape-search .jhlite-input-text {
   width: 100%;
   padding: 8px 12px;
   border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.jhipster-landscape-search-button {
-  padding: 8px 16px;
-  font-size: 1rem;
-  cursor: pointer;
-  border-radius: 4px;
+  border-radius: 20px;
 }
 
 /* Adjust the main content to accommodate the search bar */
