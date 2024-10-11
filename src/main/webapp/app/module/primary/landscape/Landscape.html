@@ -1,53 +1,54 @@
 <LandscapeLoaderVue v-if="levels.isLoading()" />
 <div class="jhipster-landscape jhlite-menu-content-template" v-else data-selector="landscape">
   <div class="jhlite-menu-content-template--content">
-    <div class="jhipster-landscape-search-container">
-      <div class="jhipster-landscape-search">
-        <div class="jhlite-field--field">
-          <input
-            type="text"
-            id="landscape-search"
-            class="jhlite-input-text"
-            placeholder="Search modules..."
-            v-model="searchQuery"
-            @input="performSearch"
-            data-selector="landscape-search-input"
-          />
-        </div>
-        <button
-          class="jhipster-landscape-search-close"
-          @click="clearSearch"
-          aria-label="Close search"
-        >
-          &times;
-        </button>
-      </div>
-    </div>
-
-    <div class="jhipster-landscape-modes-selection">
-      <div class="jhlite-mode-switch">
-        <div class="jhlite-mode-switch--modes">
-          <button
-            class="jhlite-button-switch"
-            :class="modeSwitchClass('COMPACTED')"
-            @click="selectMode('COMPACTED')"
-            data-selector="compacted-mode-button"
-          >
-            Compacted
-          </button>
-          <button
-            class="jhlite-button-switch"
-            :class="modeSwitchClass('EXTENDED')"
-            @click="selectMode('EXTENDED')"
-            data-selector="extended-mode-button"
-          >
-            Extended
-          </button>
+    <div class="jhipster-landscape-header">
+      <div class="jhipster-landscape-modes-selection">
+        <div class="jhlite-mode-switch">
+          <div class="jhlite-mode-switch--modes">
+            <button
+              class="jhlite-button-switch"
+              :class="modeSwitchClass('COMPACTED')"
+              @click="selectMode('COMPACTED')"
+              data-selector="compacted-mode-button"
+            >
+              Compacted
+            </button>
+            <button
+              class="jhlite-button-switch"
+              :class="modeSwitchClass('EXTENDED')"
+              @click="selectMode('EXTENDED')"
+              data-selector="extended-mode-button"
+            >
+              Extended
+            </button>
+          </div>
         </div>
       </div>
-    </div>
-    <div class="jhipster-landscape-preset-selection">
-      <LandscapePresetConfigurationVue :selectedPresetName="selectedPresetName" @selected="selectModulesFromPreset" />
+      <div class="jhipster-landscape-search-container">
+        <div class="jhipster-landscape-search">
+          <div class="jhlite-field--field">
+            <input
+              type="text"
+              id="landscape-search"
+              class="jhlite-input-text"
+              placeholder="Search modules..."
+              v-model="searchQuery"
+              @input="performSearch"
+              data-selector="landscape-search-input"
+            />
+          </div>
+          <button
+            class="jhipster-landscape-search-close"
+            @click="clearSearch"
+            aria-label="Close search"
+          >
+            &times;
+          </button>
+        </div>
+      </div>
+      <div class="jhipster-landscape-preset-selection">
+        <LandscapePresetConfigurationVue :selectedPresetName="selectedPresetName" @selected="selectModulesFromPreset" />
+      </div>
     </div>
 
     <div

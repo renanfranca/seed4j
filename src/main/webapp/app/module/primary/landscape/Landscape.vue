@@ -3,25 +3,34 @@
 <script lang="ts" src="./Landscape.component.ts"></script>
 
 <style scoped>
+.jhipster-landscape-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
 .jhipster-landscape-search-container {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-  z-index: 10;
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  margin: 0 20px;
 }
 
 .jhipster-landscape-search {
-  position: relative;
   display: flex;
   align-items: center;
   background-color: white;
   padding: 10px;
   border-radius: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  max-width: 400px;
+  width: 100%;
 }
 
 .jhipster-landscape-search .jhlite-field--field {
-  width: 250px;
+  flex-grow: 1;
 }
 
 .jhipster-landscape-search .jhlite-input-text {
@@ -32,9 +41,6 @@
 }
 
 .jhipster-landscape-search-close {
-  position: absolute;
-  top: -10px;
-  right: -10px;
   background-color: #f44336;
   color: white;
   border: none;
@@ -48,6 +54,7 @@
   align-items: center;
   justify-content: center;
   padding: 0;
+  margin-left: 10px;
 }
 
 .jhipster-landscape-search-close:hover {
@@ -55,7 +62,8 @@
 }
 
 .jhlite-menu-content-template--content {
-  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
 }
 
 .-search-highlighted {
