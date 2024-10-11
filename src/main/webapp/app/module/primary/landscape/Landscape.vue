@@ -6,10 +6,7 @@
 .jhipster-landscape-search-container {
   position: absolute;
   top: 20px;
-  left: 0;
-  right: 0;
-  display: flex;
-  justify-content: center;
+  left: 20px;
   z-index: 10;
 }
 
@@ -24,7 +21,7 @@
 }
 
 .jhipster-landscape-search .jhlite-field--field {
-  width: 300px;
+  width: 250px;
 }
 
 .jhipster-landscape-search .jhlite-input-text {
@@ -57,18 +54,17 @@
   background-color: #d32f2f;
 }
 
-/* Adjust the main content to accommodate the search bar */
-.jhipster-landscape {
-  padding-top: 80px; /* Adjust this value based on the height of your search bar */
+.jhlite-menu-content-template--content {
+  padding-top: 80px;
 }
 
 .-search-highlighted {
   position: relative;
   box-shadow: 
-    0 0 0 3px #ffd700, /* Solid gold border */
-    0 0 0 6px rgba(255, 215, 0, 0.5); /* Outer glow */
+    0 0 0 3px #ffd700,
+    0 0 0 6px rgba(255, 215, 0, 0.5);
   z-index: 1;
-  background-color: rgba(255, 215, 0, 0.1); /* Light gold background */
+  background-color: rgba(255, 215, 0, 0.1);
   animation: pulse 2s infinite;
 }
 
