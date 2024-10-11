@@ -93,7 +93,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1024px) {
   .jhipster-landscape-header {
     flex-direction: column;
     align-items: stretch;
