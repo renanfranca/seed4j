@@ -68,27 +68,26 @@
 
 .-search-highlighted {
   position: relative;
-  box-shadow: 
+  box-shadow:
     0 0 0 3px #ffd700,
     0 0 0 6px rgba(255, 215, 0, 0.5);
   z-index: 1;
-  background-color: rgba(255, 215, 0, 0.1);
   animation: pulse 2s infinite;
 }
 
 @keyframes pulse {
   0% {
-    box-shadow: 
+    box-shadow:
       0 0 0 3px #ffd700,
       0 0 0 6px rgba(255, 215, 0, 0.7);
   }
   70% {
-    box-shadow: 
+    box-shadow:
       0 0 0 3px #ffd700,
       0 0 0 12px rgba(255, 215, 0, 0);
   }
   100% {
-    box-shadow: 
+    box-shadow:
       0 0 0 3px #ffd700,
       0 0 0 6px rgba(255, 215, 0, 0);
   }
