@@ -12,6 +12,8 @@ $jhlite-menu-content-template-color-divider: colors.$jhlite-global-color-fill-se
   min-height: 0;
 
   &--content {
+    display: flex;
+    flex-direction: column;
     height: inherit;
   }
 
