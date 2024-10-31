@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import tech.jhipster.lite.shared.github.application.GithubApplicationService;
 
 @RestController
-@RequestMapping("/api/github")
+@RequestMapping("/api")
 @Tag(name = "Github")
 class GithubResource {
 
@@ -20,13 +20,13 @@ class GithubResource {
     this.github = github;
   }
 
-  @GetMapping("/oauth2/authorization")
+  @GetMapping("github/oauth2/authorization")
   @Operation(summary = "Get Github authorization URL")
   ResponseEntity<String> getAuthorizationUrl() {
     return ResponseEntity.ok(github.getAuthorizationUrl());
   }
 
-  @GetMapping("/oauth2/callback")
+  @GetMapping("github/oauth2/callback")
   @Operation(summary = "Handle Github OAuth2 callback")
   ResponseEntity<RestGithubToken> handleCallback(@RequestParam String code) {
     return ResponseEntity.ok(RestGithubToken.from(github.authenticate(code)));
