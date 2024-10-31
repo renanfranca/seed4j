@@ -3,6 +3,7 @@ package tech.jhipster.lite.shared.github.infrastructure.secondary;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 import tech.jhipster.lite.shared.github.domain.GithubRepository;
@@ -39,8 +40,10 @@ public class HttpGithubRepository implements GithubRepository {
     var body = new RestGithubTokenRequest(configuration.clientId(), configuration.clientSecret(), code.code());
 
     var request = new HttpEntity<>(body, headers);
-    var response = restTemplate.postForEntity(GITHUB_TOKEN_URL, request, RestGithubTokenResponse.class);
+    //TODO - use RestClient
+    ResponseEntity<RestGithubTokenResponse> response = restTemplate.postForEntity(GITHUB_TOKEN_URL, request, RestGithubTokenResponse.class);
 
+    //TODO - fix this potential null point exception check for exception and treat it with specific error
     return response.getBody().toDomain();
   }
 }
