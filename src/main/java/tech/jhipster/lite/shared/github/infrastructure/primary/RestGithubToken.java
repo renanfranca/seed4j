@@ -7,4 +7,8 @@ public record RestGithubToken(@JsonProperty("access_token") String accessToken, 
   public GithubToken toDomain() {
     return new GithubToken(accessToken, tokenType);
   }
+
+  public static RestGithubToken from(GithubToken token) {
+    return new RestGithubToken(token.accessToken(), token.tokenType());
+  }
 }

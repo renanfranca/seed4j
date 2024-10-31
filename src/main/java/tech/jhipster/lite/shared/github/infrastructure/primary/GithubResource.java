@@ -28,7 +28,7 @@ class GithubResource {
 
   @GetMapping("/oauth2/callback")
   @Operation(summary = "Handle Github OAuth2 callback")
-  ResponseEntity<RestGithubUser> handleCallback(@RequestParam String code) {
-    return ResponseEntity.ok(RestGithubUser.from(github.authenticate(code)));
+  ResponseEntity<RestGithubToken> handleCallback(@RequestParam String code) {
+    return ResponseEntity.ok(RestGithubToken.from(github.authenticate(code)));
   }
 }

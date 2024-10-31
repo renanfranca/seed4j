@@ -4,7 +4,6 @@ import org.springframework.stereotype.Service;
 import tech.jhipster.lite.shared.github.domain.GithubRepository;
 import tech.jhipster.lite.shared.github.domain.authentication.GithubAuthenticationCode;
 import tech.jhipster.lite.shared.github.domain.authentication.GithubToken;
-import tech.jhipster.lite.shared.github.domain.authentication.GithubUser;
 
 @Service
 public class GithubApplicationService {
@@ -19,8 +18,7 @@ public class GithubApplicationService {
     return github.buildAuthorizationUrl();
   }
 
-  public GithubUser authenticate(String code) {
-    GithubToken token = github.authenticate(new GithubAuthenticationCode(code));
-    return github.getUser(token);
+  public GithubToken authenticate(String code) {
+    return github.authenticate(new GithubAuthenticationCode(code));
   }
 }

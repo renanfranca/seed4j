@@ -8,7 +8,7 @@ public record GithubToken(String accessToken, String tokenType) {
     Assert.notBlank("tokenType", tokenType);
   }
 
-  public String getAuthorizationHeader() {
+  public String authorizationHeader() {
     return tokenType + " " + accessToken;
   }
 }
