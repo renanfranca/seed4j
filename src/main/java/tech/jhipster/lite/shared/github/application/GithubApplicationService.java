@@ -3,6 +3,7 @@ package tech.jhipster.lite.shared.github.application;
 import org.springframework.stereotype.Service;
 import tech.jhipster.lite.shared.github.domain.GithubRepository;
 import tech.jhipster.lite.shared.github.domain.authentication.GithubAuthenticationCode;
+import tech.jhipster.lite.shared.github.domain.authentication.GithubAuthorizationUrl;
 import tech.jhipster.lite.shared.github.domain.authentication.GithubToken;
 
 @Service
@@ -14,7 +15,7 @@ public class GithubApplicationService {
     this.github = github;
   }
 
-  public String getAuthorizationUrl() {
+  public GithubAuthorizationUrl getAuthorizationUrl() {
     return github.buildAuthorizationUrl();
   }
 

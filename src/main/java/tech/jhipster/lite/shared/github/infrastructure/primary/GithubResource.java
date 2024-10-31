@@ -22,8 +22,8 @@ class GithubResource {
 
   @GetMapping("github/oauth2/authorization")
   @Operation(summary = "Get Github authorization URL")
-  ResponseEntity<String> getAuthorizationUrl() {
-    return ResponseEntity.ok(github.getAuthorizationUrl());
+  ResponseEntity<RestGithubAuthorizationUrl> getAuthorizationUrl() {
+    return ResponseEntity.ok(RestGithubAuthorizationUrl.from(github.getAuthorizationUrl()));
   }
 
   @GetMapping("github/oauth2/callback")

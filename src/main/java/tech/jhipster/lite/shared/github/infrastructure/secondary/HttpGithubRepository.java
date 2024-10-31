@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 import tech.jhipster.lite.shared.github.domain.GithubRepository;
 import tech.jhipster.lite.shared.github.domain.authentication.GithubAuthenticationCode;
+import tech.jhipster.lite.shared.github.domain.authentication.GithubAuthorizationUrl;
 import tech.jhipster.lite.shared.github.domain.authentication.GithubToken;
 import tech.jhipster.lite.shared.github.domain.oauth.GithubOauth2Configuration;
 
@@ -25,8 +26,8 @@ public class HttpGithubRepository implements GithubRepository {
   }
 
   @Override
-  public String buildAuthorizationUrl() {
-    return configuration.buildAuthorizationUrl();
+  public GithubAuthorizationUrl buildAuthorizationUrl() {
+    return GithubAuthorizationUrl.from(configuration.buildAuthorizationUrl());
   }
 
   @Override
