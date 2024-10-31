@@ -9,7 +9,6 @@ import tech.jhipster.lite.shared.github.domain.GithubRepository;
 import tech.jhipster.lite.shared.github.domain.authentication.GithubAuthenticationCode;
 import tech.jhipster.lite.shared.github.domain.authentication.GithubToken;
 import tech.jhipster.lite.shared.github.domain.oauth.GithubOauth2Configuration;
-import tech.jhipster.lite.shared.github.infrastructure.primary.RestGithubToken;
 
 @SuppressWarnings("java:S6212")
 @Repository
@@ -39,7 +38,7 @@ public class HttpGithubRepository implements GithubRepository {
     var body = new RestGithubTokenRequest(configuration.clientId(), configuration.clientSecret(), code.code());
 
     var request = new HttpEntity<>(body, headers);
-    var response = restTemplate.postForEntity(GITHUB_TOKEN_URL, request, RestGithubToken.class);
+    var response = restTemplate.postForEntity(GITHUB_TOKEN_URL, request, RestGithubTokenResponse.class);
 
     return response.getBody().toDomain();
   }
