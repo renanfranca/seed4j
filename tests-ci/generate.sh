@@ -527,6 +527,15 @@ elif [[ $application == 'langchain4japp' ]]; then
     "langchain4j" \
     "spring-boot-langchain4j-sample"
 
+elif [[ $application == 'testapp' ]]; then
+  init_server
+  spring_boot_mvc
+  sonar_back
+
+  apply_modules \
+    "langchain4j" \
+    "spring-boot-langchain4j-sample"
+
 else
   echo "*** Unknown configuration..." "$application"
   exit 1

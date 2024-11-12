@@ -256,6 +256,7 @@ jobs:
           - typescriptapp
           - thymeleafapp
           - langchain4japp
+          - testapp
         include:
           - java-build-tool: maven
           - spring-config-format: yaml
