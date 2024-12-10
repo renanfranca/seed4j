@@ -1,3 +1,4 @@
+import { GithubCallbackVue } from '@/module/primary/github-callback';
 import { GithubConfigurationVue } from '@/module/primary/github-configuration';
 import { LandscapeVue } from '@/module/primary/landscape';
 import { ModulesVue } from '@/module/primary/modules-patch';
@@ -22,6 +23,11 @@ export const routes = [
     path: '/github-configuration',
     name: 'github-configuration',
     component: GithubConfigurationVue,
+  },
+  {
+    path: '/github-callback',
+    name: 'github-callback',
+    component: GithubCallbackVue,
   },
 ];
 
