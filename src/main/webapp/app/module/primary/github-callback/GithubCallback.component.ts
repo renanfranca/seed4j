@@ -23,7 +23,8 @@ export default defineComponent({
         countdown.value--;
         if (countdown.value === 0) {
           clearInterval(timer);
-          router.push('/');
+          const returnTo = route.query.state ? decodeURIComponent(route.query.state as string) : '/';
+          router.push(returnTo);
         }
       }, 1000);
     };

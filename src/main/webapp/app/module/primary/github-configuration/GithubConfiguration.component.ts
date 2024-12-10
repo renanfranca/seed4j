@@ -1,6 +1,7 @@
 import { inject } from '@/injections';
 import { GITHUB_REPOSITORY } from '@/module/application/ModuleProvider';
 import type { GithubToken } from '@/module/domain/GithubToken';
+import router from '@/router';
 import { IconVue } from '@/shared/icon/infrastructure/primary';
 import { defineComponent, onMounted, ref } from 'vue';
 import { useRoute } from 'vue-router';
@@ -28,8 +29,10 @@ export default defineComponent({
     const connectToGithub = () => {
       githubRepository
         .getAuthorizationUrl()
-        .then(url => {
-          window.location.assign(url);
+        .then(githubAuthorizationUrl => {
+          const currentPath = router.currentRoute.value.fullPath;
+          const githubAuthUrlWithState = `${githubAuthorizationUrl}&state=${encodeURIComponent(currentPath)}`;
+          window.location.assign(githubAuthUrlWithState);
         })
         .catch(error => console.error('Error getting authorization URL:', error));
     };
