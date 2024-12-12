@@ -1,0 +1,35 @@
+<div class="jhlite-github-repository">
+  <div v-if="isAuthenticated">
+    <select 
+      v-model="selectedOrganization" 
+      class="jhlite-select"
+      data-selector="github-organizations-select"
+    >
+      <option value="" disabled>Select an organization</option>
+      <option 
+        v-for="org in organizations" 
+        :key="org.login" 
+        :value="org"
+      >
+        {{ org.name || org.login }}
+      </option>
+    </select>
+    <button 
+      class="jhlite-button-secondary" 
+      @click="goToConfiguration"
+      data-selector="github-configuration-btn"
+    >
+      Configure GitHub
+    </button>
+  </div>
+  <div v-else>
+    <button 
+      class="jhlite-button-main" 
+      @click="connectToGithub"
+      data-selector="github-connect-btn"
+    >
+      <IconVue name="github" aria-label="Connect to GitHub" title="Connect to GitHub" />
+      Connect to GitHub
+    </button>
+  </div>
+</div>
