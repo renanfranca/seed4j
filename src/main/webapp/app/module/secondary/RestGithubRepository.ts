@@ -27,7 +27,7 @@ export class RestGithubRepository implements GithubRepository {
       .then(response => response.data);
   }
 
-  validToken(): boolean {
+  authenticated(): boolean {
     const storedToken = localStorage.getItem('github-token');
     if (!storedToken) {
       return false;

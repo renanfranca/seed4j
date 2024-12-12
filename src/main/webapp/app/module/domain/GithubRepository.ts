@@ -6,5 +6,5 @@ export interface GithubRepository {
   getAuthorizationUrl(): Promise<GithubAuthorizationUrl>;
   authenticate(code: string): Promise<GithubToken>;
   listOrganizations(token: GithubToken): Promise<GithubOrganization[]>;
-  validToken(): boolean;
+  authenticated(): boolean;
 }
