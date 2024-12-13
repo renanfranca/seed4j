@@ -11,4 +11,13 @@ public record GithubToken(String accessToken, String tokenType) {
   public String authorizationHeader() {
     return tokenType + " " + accessToken;
   }
+
+  public static GithubToken fromAuthorizationHeader(String authorization) {
+    Assert.notBlank("authorization", authorization);
+    String accessToken = authorization.trim();
+    if (accessToken.toLowerCase().startsWith("bearer ")) {
+      accessToken = accessToken.substring(7);
+    }
+    return new GithubToken(accessToken, "Bearer");
+  }
 }
