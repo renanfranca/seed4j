@@ -1,5 +1,6 @@
 package tech.jhipster.lite.shared.github.infrastructure.secondary;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -8,7 +9,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 import tech.jhipster.lite.shared.github.domain.GithubOrganization;
 import tech.jhipster.lite.shared.github.domain.GithubRepository;
-import tech.jhipster.lite.shared.github.domain.GithubUser;
 import tech.jhipster.lite.shared.github.domain.authentication.GithubAuthenticationCode;
 import tech.jhipster.lite.shared.github.domain.authentication.GithubAuthorizationUrl;
 import tech.jhipster.lite.shared.github.domain.authentication.GithubToken;
@@ -54,6 +54,8 @@ public class HttpGithubRepository implements GithubRepository {
 
   @Override
   public List<GithubOrganization> listUserOrganizations(GithubToken token) {
+    RestGithubUserResponse user = getUser(token);
+
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
     headers.setAccept(java.util.List.of(MediaType.APPLICATION_JSON));
@@ -67,15 +69,18 @@ public class HttpGithubRepository implements GithubRepository {
       RestGithubOrganizationResponse[].class
     );
 
-    if (response.getBody() == null) {
-      return Collections.emptyList();
-    }
+    List<GithubOrganization> organizations = response.getBody() == null
+      ? Collections.emptyList()
+      : Arrays.stream(response.getBody()).map(RestGithubOrganizationResponse::toDomain).toList();
 
-    return Arrays.stream(response.getBody()).map(RestGithubOrganizationResponse::toDomain).toList();
+    List<GithubOrganization> result = new ArrayList<>();
+    result.add(new GithubOrganization(user.login(), user.login(), null));
+    result.addAll(organizations);
+
+    return result;
   }
 
-  @Override
-  public GithubUser getUser(GithubToken token) {
+  private RestGithubUserResponse getUser(GithubToken token) {
     HttpHeaders headers = new HttpHeaders();
     headers.setContentType(MediaType.APPLICATION_JSON);
     headers.setAccept(java.util.List.of(MediaType.APPLICATION_JSON));
@@ -93,6 +98,6 @@ public class HttpGithubRepository implements GithubRepository {
       throw new IllegalStateException("No response body from GitHub API");
     }
 
-    return response.getBody().toDomain();
+    return response.getBody();
   }
 }
