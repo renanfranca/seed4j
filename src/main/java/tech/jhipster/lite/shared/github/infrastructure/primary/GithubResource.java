@@ -34,7 +34,7 @@ class GithubResource {
   @GetMapping("github/organizations")
   @Operation(summary = "List Github organizations for authenticated user")
   public ResponseEntity<List<RestGithubOrganization>> listOrganizations(@RequestHeader("Authorization") String authorization) {
-    GithubToken token = new GithubToken(authorization.replace("Bearer ", ""), "Bearer");
+    GithubToken token = new GithubToken(authorization.replace("Bearer ", "").replace("bearer ", ""), "Bearer");
 
     return ResponseEntity.ok(github.listUserOrganizations(token).stream().map(RestGithubOrganization::from).toList());
   }
