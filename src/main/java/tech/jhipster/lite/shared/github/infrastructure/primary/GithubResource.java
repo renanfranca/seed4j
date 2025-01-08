@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import tech.jhipster.lite.shared.github.application.GithubApplicationService;
+import tech.jhipster.lite.shared.github.domain.GithubRepositoryInfo;
 import tech.jhipster.lite.shared.github.domain.authentication.GithubToken;
 
 @RestController
@@ -36,6 +37,14 @@ class GithubResource {
   public ResponseEntity<List<RestGithubOrganization>> listOrganizations(@RequestHeader("Authorization") String authorization) {
     return ResponseEntity.ok(
       github.listUserOrganizations(GithubToken.fromAuthorizationHeader(authorization)).stream().map(RestGithubOrganization::from).toList()
+    );
+  }
+
+  @GetMapping("github/repositories")
+  @Operation(summary = "List Github repositories for authenticated user")
+  public ResponseEntity<List<String>> listRepositories(@RequestHeader("Authorization") String authorization) {
+    return ResponseEntity.ok(
+      github.listUserRepositories(GithubToken.fromAuthorizationHeader(authorization)).stream().map(GithubRepositoryInfo::name).toList()
     );
   }
 }

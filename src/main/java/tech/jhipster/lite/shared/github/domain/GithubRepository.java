@@ -9,4 +9,5 @@ public interface GithubRepository {
   GithubAuthorizationUrl buildAuthorizationUrl();
   GithubToken authenticate(GithubAuthenticationCode code);
   List<GithubOrganization> listUserOrganizations(GithubToken token);
+  List<GithubRepositoryInfo> listUserRepositories(GithubToken token);
 }

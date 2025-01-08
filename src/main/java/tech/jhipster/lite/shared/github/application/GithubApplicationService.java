@@ -4,6 +4,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 import tech.jhipster.lite.shared.github.domain.GithubOrganization;
 import tech.jhipster.lite.shared.github.domain.GithubRepository;
+import tech.jhipster.lite.shared.github.domain.GithubRepositoryInfo;
 import tech.jhipster.lite.shared.github.domain.authentication.GithubAuthenticationCode;
 import tech.jhipster.lite.shared.github.domain.authentication.GithubAuthorizationUrl;
 import tech.jhipster.lite.shared.github.domain.authentication.GithubToken;
@@ -27,5 +28,9 @@ public class GithubApplicationService {
 
   public List<GithubOrganization> listUserOrganizations(GithubToken token) {
     return github.listUserOrganizations(token);
+  }
+
+  public List<GithubRepositoryInfo> listUserRepositories(GithubToken token) {
+    return github.listUserRepositories(token);
   }
 }

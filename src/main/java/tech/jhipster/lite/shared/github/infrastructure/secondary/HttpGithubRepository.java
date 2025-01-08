@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.client.RestTemplate;
 import tech.jhipster.lite.shared.github.domain.GithubOrganization;
 import tech.jhipster.lite.shared.github.domain.GithubRepository;
+import tech.jhipster.lite.shared.github.domain.GithubRepositoryInfo;
 import tech.jhipster.lite.shared.github.domain.authentication.GithubAuthenticationCode;
 import tech.jhipster.lite.shared.github.domain.authentication.GithubAuthorizationUrl;
 import tech.jhipster.lite.shared.github.domain.authentication.GithubToken;
@@ -22,6 +23,7 @@ public class HttpGithubRepository implements GithubRepository {
   private static final String GITHUB_API_URL = "https://api.github.com";
   private static final String GITHUB_USER_ORGANIZATIONS_URL = GITHUB_API_URL + "/user/orgs";
   private static final String GITHUB_USER_URL = GITHUB_API_URL + "/user";
+  private static final String GITHUB_USER_REPOS_URL = GITHUB_API_URL + "/user/repos";
 
   private final RestTemplate restTemplate;
   private final GithubOauth2Configuration configuration;
@@ -99,5 +101,25 @@ public class HttpGithubRepository implements GithubRepository {
     }
 
     return response.getBody();
+  }
+
+  @Override
+  public List<GithubRepositoryInfo> listUserRepositories(GithubToken token) {
+    HttpHeaders headers = new HttpHeaders();
+    headers.setContentType(MediaType.APPLICATION_JSON);
+    headers.setAccept(java.util.List.of(MediaType.APPLICATION_JSON));
+    headers.setBearerAuth(token.accessToken());
+
+    var request = new HttpEntity<>(null, headers);
+    ResponseEntity<RestGithubRepositoryInfoResponse[]> response = restTemplate.exchange(
+      GITHUB_USER_REPOS_URL,
+      HttpMethod.GET,
+      request,
+      RestGithubRepositoryInfoResponse[].class
+    );
+
+    return response.getBody() == null
+      ? Collections.emptyList()
+      : Arrays.stream(response.getBody()).map(RestGithubRepositoryInfoResponse::toDomain).toList();
   }
 }
