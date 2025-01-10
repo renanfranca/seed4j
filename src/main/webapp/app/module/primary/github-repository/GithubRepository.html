@@ -1,37 +1,60 @@
 <div class="jhlite-github-repository">
   <div v-if="isAuthenticated">
-    <button class="jhlite-button-secondary" @click="goToConfiguration" data-selector="github-configuration-btn">Configure GitHub</button>
-    <select v-model="selectedOrganization" class="jhlite-select" data-selector="github-organizations-select">
-      <option value="" disabled>Select an organization</option>
-      <option v-for="org in organizations" :key="org.login" :value="org">{{ org.name || org.login }}</option>
-    </select>
+    <div v-if="isEditMode">
+      <button class="jhlite-button-secondary" @click="goToConfiguration" data-selector="github-configuration-btn">Configure GitHub</button>
+      <select v-model="selectedOrganization" class="jhlite-select" data-selector="github-organizations-select">
+        <option value="" disabled>Select an organization</option>
+        <option v-for="org in organizations" :key="org.login" :value="org">{{ org.name || org.login }}</option>
+      </select>
+    </div>
     <div v-if="selectedOrganization" class="jhlite-repository-choice" data-selector="github-repository-choice">
-      <div class="jhlite-radio-group">
-        <div class="jhlite-radio-option">
-          <input type="radio" id="new-repository" value="new" v-model="repositoryChoice" data-selector="github-new-repository-radio" />
-          <label for="new-repository">Create new repository</label>
+      <!-- Show edit mode -->
+      <div v-if="isEditMode">
+        <div class="jhlite-radio-group">
+          <div class="jhlite-radio-option">
+            <input type="radio" id="new-repository" value="new" v-model="repositoryChoice" data-selector="github-new-repository-radio" />
+            <label for="new-repository">Create new repository</label>
+          </div>
+          <div class="jhlite-radio-option">
+            <input
+              type="radio"
+              id="existing-repository"
+              value="existing"
+              v-model="repositoryChoice"
+              data-selector="github-existing-repository-radio"
+            />
+            <label for="existing-repository">Pick existing repository</label>
+          </div>
         </div>
-        <div class="jhlite-radio-option">
+        <div v-if="repositoryChoice === 'new'" class="jhlite-repository-name-input">
+          <label for="repository-name">Repository name</label>
           <input
-            type="radio"
-            id="existing-repository"
-            value="existing"
-            v-model="repositoryChoice"
-            data-selector="github-existing-repository-radio"
+            type="text"
+            id="repository-name"
+            v-model="newRepositoryName"
+            placeholder="Enter repository name"
+            class="jhlite-input"
+            data-selector="github-new-repository-name-input"
           />
-          <label for="existing-repository">Pick existing repository</label>
+          <button
+            class="jhlite-button-main"
+            @click="confirmChoice"
+            data-selector="github-confirm-choice-btn"
+            :disabled="repositoryChoice === 'new' && !newRepositoryName"
+          >
+            Confirm
+          </button>
         </div>
       </div>
-      <div v-if="repositoryChoice === 'new'" class="jhlite-repository-name-input">
-        <label for="repository-name">Repository name</label>
-        <input
-          type="text"
-          id="repository-name"
-          v-model="newRepositoryName"
-          placeholder="Enter repository name"
-          class="jhlite-input"
-          data-selector="github-new-repository-name-input"
-        />
+
+      <!-- Show readonly mode -->
+      <div v-else class="jhlite-repository-summary">
+        <p><strong>Organization:</strong> {{ selectedOrganization.name || selectedOrganization.login }}</p>
+        <p>
+          <strong>Repository:</strong>
+          {{ repositoryChoice === 'new' ? `New repository: ${newRepositoryName}` : 'Existing repository' }}
+        </p>
+        <button class="jhlite-button-secondary" @click="editChoice" data-selector="github-edit-choice-btn">Edit</button>
       </div>
     </div>
   </div>

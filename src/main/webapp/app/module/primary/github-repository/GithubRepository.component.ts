@@ -50,6 +50,15 @@ export default defineComponent({
     };
 
     const newRepositoryName = ref<string>('');
+    const isEditMode = ref(true);
+
+    const confirmChoice = () => {
+      isEditMode.value = false;
+    };
+
+    const editChoice = () => {
+      isEditMode.value = true;
+    };
 
     return {
       isAuthenticated,
@@ -59,6 +68,9 @@ export default defineComponent({
       goToConfiguration,
       repositoryChoice,
       newRepositoryName,
+      isEditMode,
+      confirmChoice,
+      editChoice,
     };
   },
 });

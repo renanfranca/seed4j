@@ -23,3 +23,18 @@
 .jhlite-repository-name-input input {
   max-width: 300px;
 }
+
+.jhlite-repository-summary {
+  margin-top: 1rem;
+  border-radius: 4px;
+  background-color: var(--jhlite-background-secondary);
+  padding: 1rem;
+}
+
+.jhlite-repository-summary p {
+  margin: 0.5rem 0;
+}
+
+.jhlite-repository-summary button {
+  margin-top: 1rem;
+}
