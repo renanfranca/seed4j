@@ -14,6 +14,7 @@ export default defineComponent({
     const isAuthenticated = ref(false);
     const organizations = ref<GithubOrganization[]>([]);
     const selectedOrganization = ref<GithubOrganization | null>(null);
+    const repositoryChoice = ref<'new' | 'existing' | null>(null);
 
     const loadOrganizations = (token: GithubToken) => {
       githubRepository
@@ -54,6 +55,7 @@ export default defineComponent({
       selectedOrganization,
       connectToGithub,
       goToConfiguration,
+      repositoryChoice,
     };
   },
 });

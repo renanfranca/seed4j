@@ -1,0 +1,14 @@
+.jhlite-repository-choice {
+  margin-top: 1rem;
+}
+
+.jhlite-radio-group {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.jhlite-radio-option {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
