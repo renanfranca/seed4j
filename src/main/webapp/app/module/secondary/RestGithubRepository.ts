@@ -4,6 +4,7 @@ import { GithubOrganization } from '@/module/domain/GithubOrganization';
 import type { GithubToken } from '@/module/domain/GithubToken';
 import { AxiosHttp } from '@/shared/http/infrastructure/secondary/AxiosHttp';
 import { GithubRepository } from '../domain/GithubRepository';
+import type { GithubRepositoryInfo } from '../domain/GithubRepositoryInfo';
 import { mapToGithubToken, RestGithubToken } from './RestGithubToken';
 
 export class RestGithubRepository implements GithubRepository {
@@ -39,5 +40,15 @@ export class RestGithubRepository implements GithubRepository {
     } catch {
       return false;
     }
+  }
+
+  listRepositories(token: GithubToken, organization: string): Promise<GithubRepositoryInfo[]> {
+    return this.axiosInstance
+      .get<GithubRepositoryInfo[]>(`/api/github/repositories?organization=${encodeURIComponent(organization)}`, {
+        headers: {
+          Authorization: `${token.tokenType} ${token.accessToken}`,
+        },
+      })
+      .then(response => response.data);
   }
 }
