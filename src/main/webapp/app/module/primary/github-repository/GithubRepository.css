@@ -12,3 +12,14 @@
   gap: 0.5rem;
   align-items: center;
 }
+
+.jhlite-repository-name-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.jhlite-repository-name-input input {
+  max-width: 300px;
+}

@@ -21,6 +21,17 @@
           <label for="existing-repository">Pick existing repository</label>
         </div>
       </div>
+      <div v-if="repositoryChoice === 'new'" class="jhlite-repository-name-input">
+        <label for="repository-name">Repository name</label>
+        <input
+          type="text"
+          id="repository-name"
+          v-model="newRepositoryName"
+          placeholder="Enter repository name"
+          class="jhlite-input"
+          data-selector="github-new-repository-name-input"
+        />
+      </div>
     </div>
     <button class="jhlite-button-secondary" @click="goToConfiguration" data-selector="github-configuration-btn">Configure GitHub</button>
   </div>

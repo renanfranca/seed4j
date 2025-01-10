@@ -49,6 +49,8 @@ export default defineComponent({
       router.push('/github-configuration');
     };
 
+    const newRepositoryName = ref<string>('');
+
     return {
       isAuthenticated,
       organizations,
@@ -56,6 +58,7 @@ export default defineComponent({
       connectToGithub,
       goToConfiguration,
       repositoryChoice,
+      newRepositoryName,
     };
   },
 });
