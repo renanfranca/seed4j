@@ -422,7 +422,14 @@ export default defineComponent({
         return '';
       }
 
-      return selectedRank.value.map(rank => (rank == 'RANK_S' ? ' -highlight-rank-s' : '')).orElse('');
+      if (selectedRank.value.isPresent()) {
+        return landscapeValue()
+          .getModuleRank(module)
+          .map(rank => ` -highlight-rank -${rank.toLowerCase().substring(5)}`)
+          .orElse('');
+      }
+
+      return '';
     };
 
     const modeClass = (): string => {
