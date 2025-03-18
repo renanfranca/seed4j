@@ -1450,6 +1450,16 @@ describe('Landscape', () => {
       });
     });
 
+    it('should highlight module with the same rank as the filtered rank', async () => {
+      const { wrapper, rankComponent } = await setupRankTest();
+
+      await triggerRankFilter(wrapper, rankComponent, 'RANK_S');
+
+      const filteredModuleElement = wrapper.find(wrappedElement('init-module'));
+      expect(filteredModuleElement.exists()).toBe(true);
+      expect(filteredModuleElement.classes()).toContain('-highlight-rank-s');
+    });
+
     const setupRankTest = async () => {
       const wrapper = await componentWithLandscape();
       const rankComponent = wrapper.findComponent(LandscapeRankModuleFilterVue);
